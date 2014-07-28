@@ -20,7 +20,7 @@ I'm not making this up:
 	sys	0m0.007s
 
 So in real time it took a quarter of the time to calculate the fibonacci sequence
-up to 1000 digits than it did to produce a command not found message.  Once things
+up to 1000 digits than it did to produce a `command not found` message.  Once things
 are cached the `command not found` does improve, but not enough to be faster than
 the fibonacci calculation:
 
@@ -31,7 +31,7 @@ the fibonacci calculation:
 	user	0m0.063s
 	sys	0m0.016s
 
-So it still takes 2.4 times as long to produce the `commad not found` error
+So it still takes 2.4 times as long to produce the `command not found` error
 than it takes to load python, parse the script, and add 4780 numbers.
 
 Maybe I've found something that python is highly performant with.
