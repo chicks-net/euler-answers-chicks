@@ -36,6 +36,22 @@ than it takes to load python, parse the script, and add 4780 numbers.
 
 Maybe I've found something that python is highly performant with.
 
+[time passes]
+
+I mentioned this to another friend this morning and he pointed out that it might
+be the command not found logic running.  So I tried this out and found that to be
+the problem!
+
+	chicks@freecandy problem025 $ unset command_not_found_handle
+	chicks@freecandy problem025 $ time answer025.py                               
+	-bash: answer025.py: command not found
+
+	real    0m0.000s
+	user    0m0.000s
+	sys     0m0.000s
+
+Aha!
+
 Grump
 -----
 
