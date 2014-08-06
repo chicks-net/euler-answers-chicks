@@ -2,7 +2,7 @@
 
 possible_factors = [ ]
 
-for z in range(10,100):
+for z in range(100,1000):
 	possible_factors.append(z)
 
 max_product = 0
@@ -26,3 +26,4 @@ for y in possible_factors:
 				max_y = y
 
 print str(max_product) + " = " + str(max_x) + " * " + str(max_y)
+print "ANSWER:" + str(max_product)
