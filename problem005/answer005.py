@@ -9,13 +9,13 @@ def no_remainders(n,max_multiplier):
 
 	return True
 
-n = 1
+n = 2
 max_multiplier = 20
 
 while True:
 	if no_remainders(n,max_multiplier):
 		#print n
 		break
-	n += 1
+	n += 2
 
 print "ANSWER:" + str(n)
