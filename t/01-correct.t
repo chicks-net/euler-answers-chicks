@@ -15,8 +15,35 @@ find(\&find_answers,'..');
 ok( (scalar @files) > 0, 'found answer files to test');
 
 foreach my $f (sort @files) {
-	print "$f\n";
-	my $out = `$f`;
+	my ($q,$lang,$hashtag);
+	if ($f =~ /(?:^|\/)answer(\d{3})\.(\w+)$/) {
+		$q = $1+0;
+		$lang = $2;
+		if ( defined $correct_answers{$q}->{hashtag} ) {
+			$hashtag = $correct_answers{$q}->{hashtag};
+		} else {
+			$hashtag = '';
+		}
+	} else {
+		fail("$f name parse error");
+		next;
+	}
+
+	SKIP: {
+		if ($hashtag eq 'slow') {
+			skip "q$q is slow ($lang)",1;
+			next;
+		}
+
+		my $out = `$f`;
+
+		if ($out =~ /^ANSWER:(\d+)$/m) {
+#			print "got $1 in $f\n";
+			cmp_ok($1,'==',$correct_answers{$q}->{answer},"$q $lang correct");
+		} else {
+			fail("$f did not return answer");
+		}
+	}
 }
 
 done_testing();
