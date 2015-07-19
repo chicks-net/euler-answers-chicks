@@ -10,4 +10,4 @@ while last <= 4000000:
 	if ( (last % 2) == 0):
 		sum += last
 
-print "sum=" + str(sum)
+print "ANSWER:" + str(sum)

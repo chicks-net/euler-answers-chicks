@@ -28,4 +28,4 @@ for name in sorted(names):
 	sum = sum + name_score
 
 print "count=" + str(count)
-print "sum=" + str(sum)
+print "ANSWER:" + str(sum)

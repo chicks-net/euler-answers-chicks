@@ -13,4 +13,4 @@ do
 	fi
 done
 
-echo "sum=$sum"
+echo "ANSWER:$sum"

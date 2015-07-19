@@ -10,4 +10,4 @@ for my $n (1..999) {
 	}
 }
 
-print "sum=$sum\n";
+print "ANSWER:$sum\n";

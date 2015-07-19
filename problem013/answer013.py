@@ -14,4 +14,7 @@ digits = str(len(str_sum))
 
 print "sum digits=" + digits
 print "sum=" + str_sum + ".00"
-print "left(sum,10)=" + "".join(list(str_sum)[:10])
+
+answer = "".join(list(str_sum)[:10])
+print "left(sum,10)=" + answer
+print "ANSWER:" + answer
