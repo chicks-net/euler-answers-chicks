@@ -5,6 +5,7 @@ use warnings;
 use Test::More;
 use File::Find;
 use Data::Dumper;
+use Cwd;
 
 my %correct_answers = read_answers('answers.txt');
 #print Dumper(\%correct_answers);
@@ -14,11 +15,16 @@ my @files;
 find(\&find_answers,'..');
 ok( (scalar @files) > 0, 'found answer files to test');
 
+my $startdir = getcwd;
+
 foreach my $f (sort @files) {
-	my ($q,$lang,$hashtag);
-	if ($f =~ /(?:^|\/)answer(\d{3})\.(\w+)$/) {
-		$q = $1+0;
-		$lang = $2;
+	chdir($startdir); # start in the same place
+
+	my ($q,$qdir,$lang,$hashtag);
+	if ($f =~ /^([\w.\/]+)\/answer(\d{3})\.(\w+)$/) {
+		$qdir = $1;
+		$q = $2+0;
+		$lang = $3;
 		if ( defined $correct_answers{$q}->{hashtag} ) {
 			$hashtag = $correct_answers{$q}->{hashtag};
 		} else {
@@ -28,6 +34,8 @@ foreach my $f (sort @files) {
 		fail("$f name parse error");
 		next;
 	}
+
+	chdir($qdir);
 
 	SKIP: {
 		if ($hashtag eq 'slow') {
