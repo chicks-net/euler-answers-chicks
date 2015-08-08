@@ -1,0 +1,41 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+my ($problem) = @ARGV; # one at a time
+
+# make sure we start in the right place
+die "wrong dir" unless -d 'problem001';
+die "wrong dir" unless -d '.git';
+
+# mkdir
+my $dir = sprintf("problem%03d",$problem);
+if (-d $dir) {
+	die "$dir already exists";
+}
+mkdir($dir) or die "could not mkdir($dir): $!";
+
+# elinks
+my $elinks = 'elinks -dump -no-references -no-numbering';
+my $url = "https://projecteuler.net/problem=$problem";
+
+my $problem_content = `$elinks $url`;
+$problem_content =~ s/^.*\n(\w)/$1/s; # strip headers
+$problem_content =~ s/^.*Privacy Policy//m;
+$problem_content =~ s/\n+$/\n/s;
+$problem_content =~ s/^/> /gm; # quotes
+
+my $fh;
+my $readme = "$dir/README.md";
+open($fh,'>',$readme) or die "could not open $readme: $!";
+
+print $fh "# Euler Problem $problem
+
+[Problem Definition]($url):
+$problem_content
+";
+close($fh);
+
+system("git add $dir");
+system("cat $readme");
