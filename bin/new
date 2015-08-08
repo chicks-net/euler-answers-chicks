@@ -17,13 +17,15 @@ if (-d $dir) {
 mkdir($dir) or die "could not mkdir($dir): $!";
 
 # elinks
-my $elinks = 'elinks -dump -no-references -no-numbering';
+my $elinks = 'elinks -dump -no-references -no-numbering -dump-width 120';
 my $url = "https://projecteuler.net/problem=$problem";
 
 my $problem_content = `$elinks $url`;
 $problem_content =~ s/^.*\n(\w)/$1/s; # strip headers
 $problem_content =~ s/^.*Privacy Policy//m;
-$problem_content =~ s/\n+$/\n/s;
+$problem_content =~ s/^.*Published on.*$//m;
+$problem_content =~ s/\n+$/\n/s; # extra blank lines at end
+$problem_content =~ s/\n\n\n/\n\n/sg; # extra blank lines in middle
 $problem_content =~ s/^/> /gm; # quotes
 
 my $fh;
@@ -37,5 +39,5 @@ $problem_content
 ";
 close($fh);
 
-system("git add $dir");
+#system("git add $dir");
 system("cat $readme");
