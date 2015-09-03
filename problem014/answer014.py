@@ -1,7 +1,7 @@
 #!/usr/bin/python
+"""chicks' answer to Euler Project problem #14"""
 
-
-def collatz(n,verbose=False):
+def collatz(n, verbose=False):
 	len = 1 # start with 1 to account for not counting the final "1"
 
 	while n > 1:
@@ -11,7 +11,7 @@ def collatz(n,verbose=False):
 		if (n % 2) == 0:
 			n = n / 2
 		else:
-			n = (3 * n) + 1 
+			n = (3 * n) + 1
 
 	if verbose:
 		print "1"
@@ -34,6 +34,6 @@ while check_n < 1000000:
 
 	check_n += 1
 
-collatz(max_n,True)
+collatz(max_n, True)
 print "ANSWER:" + str(max_n)
 #print "max_len=" + str(max_len)

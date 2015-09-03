@@ -1,8 +1,9 @@
 #!/usr/bin/python
+"""chicks' answer to Euler Project problem #8"""
 
-digits = [ ]
+digits = []
 
-input = open("1000digit.txt","r")
+input = open("1000digit.txt", "r")
 lines = input.readlines()
 
 for line in lines:
@@ -13,11 +14,11 @@ for line in lines:
 
 #print "digits has " + str(len(digits)) + " elements"
 
-greatest=0
+greatest = 0
 
 for place in range(1000-13+1):
 	start = 1
-	mydigits = [ ]
+	mydigits = []
 	for member in range(13):
 		digit = digits[place+member]
 		mydigits.append(digit)

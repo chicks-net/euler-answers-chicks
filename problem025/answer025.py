@@ -1,6 +1,7 @@
 #!/usr/bin/python
+"""chicks' answer to Euler Project problem #25"""
 
-fibos = [ 1, 1 ]
+fibos = [1, 1]
 max_digits = 1
 
 while max_digits < 1000:

@@ -1,14 +1,15 @@
 #!/usr/bin/python
+"""chicks' answer to Euler Project problem #3"""
 
 def factor(n):
-	factors = [ ]
+	factors = []
 	x = 2
 	while x < n:
 		if n % x == 0:
 			factors.append(x)
 		if (x % 10000000) == 0:
 			print "\tchecking " + str(x) + " for " + str(n) + " (" + str(float(x/n)) + "%)"
-		x=x+1
+		x = x + 1
 
 	print str(n) + " has " + str(len(factors)) + " factors"
 

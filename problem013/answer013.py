@@ -1,15 +1,16 @@
 #!/usr/bin/python
+"""chicks' answer to Euler Project problem #13"""
 
-input = open("large_numbers.txt","r")
-lines = input.readlines()
+numbers_file = open("large_numbers.txt", "r")
+lines = numbers_file.readlines()
 
-sum = 0
+accumulator = 0
 
 for y in lines:
-	sum = sum + int(y)
-	#print "sum=" + str(sum)
+	accumulator = accumulator + int(y)
+	#print "accumulator=" + str(accumulator)
 
-str_sum = str(sum)
+str_sum = str(accumulator)
 digits = str(len(str_sum))
 
 print "sum digits=" + digits

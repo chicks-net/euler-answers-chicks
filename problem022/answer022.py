@@ -1,13 +1,14 @@
 #!/usr/bin/python
+"""chicks' answer to Euler Project problem #22"""
 
-input = open("names.txt","r")
-line = input.readline()
+names_file = open("names.txt", "r")
+line = names_file.readline()
 quoted_names = line.split(",")
 
-count=1
-sum=0
+count = 1
+accumulator = 0
 
-names = [ ]
+names = []
 
 for q in quoted_names:
 	letters = list(q)
@@ -25,7 +26,7 @@ for name in sorted(names):
 	name_score = count * letters_score
 	#print " ".join([str(count),name,str(name_score)]);
 	count = count + 1
-	sum = sum + name_score
+	accumulator = accumulator + name_score
 
 print "count=" + str(count)
-print "ANSWER:" + str(sum)
+print "ANSWER:" + str(accumulator)

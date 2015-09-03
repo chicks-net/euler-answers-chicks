@@ -1,8 +1,9 @@
 #!/usr/bin/python
+"""chicks' answer to Euler Project problem #4"""
 
-possible_factors = [ ]
+possible_factors = []
 
-for z in range(100,1000):
+for z in range(100, 1000):
 	possible_factors.append(z)
 
 max_product = 0
@@ -21,7 +22,7 @@ for y in possible_factors:
 			#print str(product) + " = " + str(x) + " * " + str(y)
 
 			if product > max_product:
-				max_product = product 
+				max_product = product
 				max_x = x
 				max_y = y
 
