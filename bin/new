@@ -39,5 +39,7 @@ $problem_content
 ";
 close($fh);
 
-#system("git add $dir");
 system("cat $readme");
+my $gitadd = "git add $dir";
+print "do next: git add $dir\n";
+#system($gitadd);
