@@ -1,5 +1,5 @@
 #!/usr/bin/python
-"""chicks' answer to Euler Project problem #56"""
+"""chicks' answer to Euler Project problem #16"""
 
 import math
 
