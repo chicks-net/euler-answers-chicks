@@ -15,6 +15,12 @@ print str(len(lines)) + " lines read"
 pp = pprint.PrettyPrinter(indent=4)
 grid = []
 
+def gg(j,k):
+	if j<0 or k<0:
+		return 1
+	else:
+		return grid[j][k]
+
 for a in lines:
 	a = string.strip(a)
 	fields = re.split('\s+', a)
@@ -32,8 +38,8 @@ for z in range(0,rows):
 	row = grid[z]
 	pp.pprint(row)
 
-	for y in range(3,len(row)):
-		product = grid[z][y] * grid [z-1][y-1] * grid[z-2][y-2] * grid[z-3][y-3]
+	for y in range(0,len(row)):
+		product = gg(z,y) * gg(z-1,y-1) * gg(z-2,y-2) * gg(z-3,y-3)
 		coord = "(" + str(z) + "," + str(y) + ")"
 		print coord + " -> " + str(product)
 		if product > big_product:
