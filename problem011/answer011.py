@@ -18,6 +18,8 @@ grid = []
 def gg(j,k):
 	if j<0 or k<0:
 		return 1
+	elif j >= grid_rows or k >= grid_cols :
+		return 1
 	else:
 		return grid[j][k]
 
@@ -33,15 +35,50 @@ for a in lines:
 
 big_product = 0
 big_coord = ""
-rows = len(grid)
-for z in range(0,rows):
+grid_rows = len(grid)
+grid_cols = len(grid[0])
+
+for z in range(0,grid_rows):
 	row = grid[z]
 	pp.pprint(row)
 
 	for y in range(0,len(row)):
+		# back diaganol
 		product = gg(z,y) * gg(z-1,y-1) * gg(z-2,y-2) * gg(z-3,y-3)
-		coord = "(" + str(z) + "," + str(y) + ")"
+		coord = ( "(" + str(z) + "," + str(y) + ") " + 
+			",".join(map(str,(gg(z,y),gg(z-1,y-1),gg(z-2,y-2),gg(z-3,y-3))))
+		)
+		print coord + " \> " + str(product)
+		if product > big_product:
+			big_product = product
+			big_coord = coord
+
+		# forward diaganol
+		product = gg(z,y) * gg(z+1,y+1) * gg(z+2,y+2) * gg(z+3,y+3)
+		coord = ( "(" + str(z) + "," + str(y) + ") " + 
+			",".join(map(str,(gg(z,y),gg(z+1,y+1),gg(z+2,y+2),gg(z+3,y+3))))
+		)
+		print coord + " /> " + str(product)
+		if product > big_product:
+			big_product = product
+			big_coord = coord
+
+		# left-right
+		product = gg(z,y) * gg(z+1,y) * gg(z+2,y) * gg(z+3,y)
+		coord = ( "(" + str(z) + "," + str(y) + ") " + 
+			",".join(map(str,(gg(z,y),gg(z+1,y),gg(z+2,y),gg(z+3,y))))
+		)
 		print coord + " -> " + str(product)
+		if product > big_product:
+			big_product = product
+			big_coord = coord
+
+		# up-down
+		product = gg(z,y) * gg(z,y+1) * gg(z,y+2) * gg(z,y+3)
+		coord = ( "(" + str(z) + "," + str(y) + ") " + 
+			",".join(map(str,(gg(z,y),gg(z,y+1),gg(z,y+2),gg(z,y+3))))
+		)
+		print coord + " |> " + str(product)
 		if product > big_product:
 			big_product = product
 			big_coord = coord
