@@ -17,7 +17,7 @@ if (-d $dir) {
 mkdir($dir) or die "could not mkdir($dir): $!";
 
 # elinks
-my $elinks = 'elinks -dump -no-references -no-numbering -dump-width 120';
+my $elinks = 'elinks -dump -no-references -no-numbering -dump-width 100';
 my $url = "https://projecteuler.net/problem=$problem";
 
 my $problem_content = `$elinks $url`;
@@ -26,13 +26,20 @@ $problem_content =~ s/^.*Privacy Policy//m;
 $problem_content =~ s/^.*Published on.*$//m;
 $problem_content =~ s/\n+$/\n/s; # extra blank lines at end
 $problem_content =~ s/\n\n\n/\n\n/sg; # extra blank lines in middle
-$problem_content =~ s/^/> /gm; # quotes
+
+$problem_content =~ s/^([^\n]+)$//m; # get title
+my ($title) = $1;
+
+$problem_content =~ s/^\s+Problem \d+\s+//m; # clear problem #
+
+$problem_content =~ s/^(   )?/> /gm; # quotes
+$problem_content =~ s/\s+$//gm; # trailing spaces
 
 my $fh;
 my $readme = "$dir/README.md";
 open($fh,'>',$readme) or die "could not open $readme: $!";
 
-print $fh "# Euler Problem $problem
+print $fh "# Euler Problem $problem: $title
 
 [Problem Definition]($url):
 $problem_content
