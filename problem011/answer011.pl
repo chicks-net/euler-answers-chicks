@@ -44,13 +44,26 @@ foreach my $x (0 .. 16) {
 	}
 }
 
-# check diaganol
+# check diaganol forward
 foreach my $x (0 .. 16) {
 	foreach my $y (0 .. 16) {
 		my $product = 1;
 		$count++;
 		foreach my $term_index (0 .. 3) {
 			$product *= $grid->[$x+$term_index]->[$y+$term_index];
+		}
+		print "diag $x,$y $product\n";
+		$greatest_product = $product if $product > $greatest_product;
+	}
+}
+
+# check diaganol backwards
+foreach my $x (0 .. 16) {
+	foreach my $y (0 .. 16) {
+		my $product = 1;
+		$count++;
+		foreach my $term_index (0 .. 3) {
+			$product *= $grid->[$x-$term_index]->[$y+$term_index];
 		}
 		print "diag $x,$y $product\n";
 		$greatest_product = $product if $product > $greatest_product;

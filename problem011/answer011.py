@@ -52,23 +52,25 @@ for z in range(0,grid_rows):
 		if product > big_product:
 			big_product = product
 			big_coord = coord
+			print str(product) + " is the new product at " + coord
 
 		# forward diaganol
-		product = gg(z,y) * gg(z+1,y+1) * gg(z+2,y+2) * gg(z+3,y+3)
+		product = gg(z,y) * gg(z-1,y+1) * gg(z-2,y+2) * gg(z-3,y+3)
 		coord = ( "(" + str(z) + "," + str(y) + ") " + 
-			",".join(map(str,(gg(z,y),gg(z+1,y+1),gg(z+2,y+2),gg(z+3,y+3))))
+			",".join(map(str,(gg(z,y),gg(z-1,y+1),gg(z-2,y+2),gg(z-3,y+3))))
 		)
 		print coord + " /> " + str(product)
 		if product > big_product:
 			big_product = product
 			big_coord = coord
+			print str(product) + " is the new product at " + coord
 
 		# left-right
 		product = gg(z,y) * gg(z+1,y) * gg(z+2,y) * gg(z+3,y)
 		coord = ( "(" + str(z) + "," + str(y) + ") " + 
 			",".join(map(str,(gg(z,y),gg(z+1,y),gg(z+2,y),gg(z+3,y))))
 		)
-		print coord + " -> " + str(product)
+	#	print coord + " -> " + str(product)
 		if product > big_product:
 			big_product = product
 			big_coord = coord
@@ -78,7 +80,7 @@ for z in range(0,grid_rows):
 		coord = ( "(" + str(z) + "," + str(y) + ") " + 
 			",".join(map(str,(gg(z,y),gg(z,y+1),gg(z,y+2),gg(z,y+3))))
 		)
-		print coord + " |> " + str(product)
+	#	print coord + " |> " + str(product)
 		if product > big_product:
 			big_product = product
 			big_coord = coord
