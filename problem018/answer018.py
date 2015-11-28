@@ -14,12 +14,11 @@ triangle_filename = sys.argv[1]
 print str(argcount) + " arguments: " + triangle_filename 
 
 # read file
-triangle_file = open(triangle_filename, "r")
-lines = triangle_file.readlines()
-print str(len(lines)) + " lines read"
+with open(triangle_filename, "r") as triangle_file:
+	lines = triangle_file.readlines()
+	print str(len(lines)) + " lines read"
 
 triangle = []
-
 for y in lines:
 	y = string.strip(y)
 	fields = re.split('\s+', y)
@@ -32,15 +31,15 @@ for y in lines:
 pp = pprint.PrettyPrinter(indent=4)
 #pp.pprint(triangle)
 
-rows = len(triangle)-1
+rows = len(triangle) - 1
 for z in range(0,rows):
 	row = triangle[z]
 	pp.pprint(row)
 
-	entries = len(row)-1
+	entries = len(row) - 1
 	for y in range(0,entries):
 		a = row[y]
-		b = row[y+1]
+		b = row[y + 1]
 		#print "comparing " + str(a) + " and " + str(b)
 		adder = 0
 		if a >= b:
@@ -48,7 +47,7 @@ for z in range(0,rows):
 		else:
 			adder = b
 
-		triangle[z+1][y] += adder
+		triangle[z + 1][y] += adder
 
 
 answer = str(triangle[rows][0])
