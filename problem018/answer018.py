@@ -18,7 +18,6 @@ triangle_file = open(triangle_filename, "r")
 lines = triangle_file.readlines()
 print str(len(lines)) + " lines read"
 
-pp = pprint.PrettyPrinter(indent=4)
 triangle = []
 
 for y in lines:
@@ -29,13 +28,9 @@ for y in lines:
 		int_fields.append(int(f))
 	triangle.insert(0,int_fields)
 	c = len(fields)
-#	print str(c) + '::' + y
 
+pp = pprint.PrettyPrinter(indent=4)
 #pp.pprint(triangle)
-
-#str_sum = str(accumulator)
-#digits = str(len(str_sum))
-#print "sum=" + str_sum + ".00"
 
 rows = len(triangle)-1
 for z in range(0,rows):
