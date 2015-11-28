@@ -15,7 +15,7 @@ def calc_digit_factorial_sum(n):
 
 	return sum
 
-for x in range(1,20000000):
+for x in xrange(1,20000000):
 	digit_sum = calc_digit_factorial_sum( x )
 
 	if digit_sum == x:

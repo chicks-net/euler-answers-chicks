@@ -17,8 +17,8 @@ def calc_digit_sum(n):
 
 	return sum
 
-for a in range(1, max_factor):
-	for b in range(1, max_factor):
+for a in xrange(1, max_factor):
+	for b in xrange(1, max_factor):
 		digit_sum = calc_digit_sum( a ** b )
 
 		if digit_sum > max_digit_sum:
